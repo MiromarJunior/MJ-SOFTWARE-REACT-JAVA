@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -20,17 +21,16 @@ import com.projeto.empresa.backendjava.pessoa.pessoafisica.model.PessoaFisica;
 import com.projeto.empresa.backendjava.pessoa.pessoafisica.repository.PessoaFisicaRepository;
 import com.projeto.empresa.backendjava.pessoa.pessoafisica.service.PessoaFisicaService;
 
-
 @Service
 public class PessoaFisicaServiceImp implements PessoaFisicaService {
 
     @Autowired
     private PessoaFisicaRepository repository;
 
-    public String apenasNumeros(String value){
-        if(value != null){
+    public String apenasNumeros(String value) {
+        if (value != null) {
             return value.replaceAll("\\D+", "");
-        }else{
+        } else {
             return value;
         }
 
@@ -42,17 +42,19 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
         return pessoas.stream()
                 .map(PessoaFisicaSimplesDTO::new)
                 .collect(Collectors.toList());
-            
-            }
+
+    }
 
     @Override
     public PessoaFisica createPessoaFisica(PessoaFisicaDTO dto) {
         validaCpf(dto.getPessoaCpf());
-      
+        validaEmail(dto.getPessoaEmail(), null);
+
         PessoaFisica pessoa = new PessoaFisica();
-        BeanUtils.copyProperties(dto, pessoa,"pessoaCpf","pessoaFonecelular","pessoaFisicaId","pessoaDtCadastro","pessoaDtAtualizacao");       
-        pessoa.setPessoaCpf(apenasNumeros(dto.getPessoaCpf()));      
-        pessoa.setPessoaFoneCelular(apenasNumeros(dto.getPessoaFoneCelular()));      
+        BeanUtils.copyProperties(dto, pessoa, "pessoaCpf", "pessoaFoneCelular", "pessoaFisicaId", "pessoaDtCadastro",
+                "pessoaDtAtualizacao");
+        pessoa.setPessoaCpf(apenasNumeros(dto.getPessoaCpf()));
+        pessoa.setPessoaFoneCelular(apenasNumeros(dto.getPessoaFoneCelular()));
         pessoa.setPessoaDtCadastro(LocalDateTime.now());
         return repository.save(pessoa);
 
@@ -71,35 +73,48 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
     }
 
     @Override
-    public PessoaFisica updatePessoaFisica(Long id,PessoaFisicaUpdateDTO dto) {
-       
-        
+    public PessoaFisica updatePessoaFisica(Long id, PessoaFisicaUpdateDTO dto) {
+
         PessoaFisica pessoa = getPessoaFisicaById(id);
+        validaEmail(dto.getPessoaEmail(), id);
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto, pessoa);
 
         pessoa.setPessoaFisicaId(id);
 
         pessoa.setPessoaFoneCelular(apenasNumeros(dto.getPessoaFoneCelular()));
-       
+
         pessoa.setPessoaDtAtualizacao(LocalDateTime.now());
-       
+
         pessoa.setPessoaCep(apenasNumeros(dto.getPessoaCep()));
-      
+
         pessoa.setPessoaFoneFixo(apenasNumeros(dto.getPessoaFoneFixo()));
 
-        
-
-   
         return repository.save(pessoa);
     }
 
     @Override
     public void validaCpf(String cpf) {
-        String cpfString = cpf.replaceAll("\\D+", "");        
-        if(repository.findByPessoaCpf(cpfString).isPresent()){
-           throw new ResponseStatusException(HttpStatus.CONFLICT,
-            "Erro ao Cadastrar ou Atualizar Pessoa - CPF já Cadastrado: ");
+        String cpfString = cpf.replaceAll("\\D+", "");
+        if (repository.findByPessoaCpf(cpfString).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Erro ao Cadastrar ou Atualizar Pessoa - CPF já Cadastrado: ");
+        }
+    }
+
+    @Override
+    public void validaEmail(String email, Long id) {
+        String msg = "Erro ao Cadastrar Pessoa - Email já Cadastrado: ";
+        Optional<PessoaFisica> pessoaOptional = repository.findByPessoaEmail(email.toLowerCase());
+
+        if (pessoaOptional.isPresent()) {
+            PessoaFisica pessoaFisica = pessoaOptional.get();           
+            if (id == null) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, msg);
+            }
+            if (id > 0 && !id.equals(pessoaFisica.getPessoaFisicaId())) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, msg);
+            }
         }
     }
 
@@ -109,7 +124,7 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
         repository.deleteById(id);
         Map<String, Object> resposta = new HashMap<>();
         resposta.put("mensagem", "Registro Excluído com Sucesso!");
-       return resposta;
+        return resposta;
     }
 
 }

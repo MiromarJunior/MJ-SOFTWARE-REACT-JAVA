@@ -15,10 +15,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 import StoreIcon from '@mui/icons-material/Store';
+import HomeIcon from '@mui/icons-material/Home';
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -127,8 +127,8 @@ export default function Menu({children}:ChildrenProps) {
             MJ SOFTWARE
           </Typography>
 
-          <IconButton style={{color:"white", float : "right"}} >
-            <InboxIcon/>
+          <IconButton onClick={()=>navigate("/home")} style={{color:"white", float : "right"}} >
+         <HomeIcon />
           </IconButton>
 
         </Toolbar>
@@ -143,6 +143,7 @@ export default function Menu({children}:ChildrenProps) {
     
         <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
+              onClick={()=> navigate("/pessoaFisica")} 
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -155,7 +156,7 @@ export default function Menu({children}:ChildrenProps) {
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
-                  onClick={()=> navigate("/pessoaFisica")} >
+                  >
                   <AccountCircleIcon  /> 
                  
                 </ListItemIcon>
@@ -165,6 +166,7 @@ export default function Menu({children}:ChildrenProps) {
 
             <ListItem  disablePadding sx={{ display: 'block' }}>
               <ListItemButton
+               onClick={()=> navigate("/pessoaJuridica")}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -177,7 +179,7 @@ export default function Menu({children}:ChildrenProps) {
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
-                  onClick={()=> navigate("/pessoaJuridica")} >
+                  >
                   <StoreIcon  /> 
                  
                 </ListItemIcon>

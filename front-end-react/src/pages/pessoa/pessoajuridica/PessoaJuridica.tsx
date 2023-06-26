@@ -10,7 +10,7 @@ import { PessoaJuridicaModel } from "./PessoaJuridicaModel";
 
 export const PessoaJuridica = () => {
     const navigate = useNavigate();
-    const [rows, setRows] = useState<PessoaJuridicaModel[]>([]);
+    const [rows, setRows] = useState<PessoaJuridicaModel[] | object[]>([]);
 
     const buscaPessoa = () => {
         getApiBack({}, "pessoaJuridica", setRows).catch(error => console.error(error));

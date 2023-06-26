@@ -45,6 +45,13 @@ public class PessoaFisica extends Pessoa{
     @Column(name = "pefi_dt_nascimento")
     private LocalDate pessoaDtNascimento;
 
+    @Override
+    public void setPessoaEmail(String pessoaEmail) {       
+        super.setPessoaEmail(pessoaEmail.toLowerCase());
+    }
+
+    
+
 
    
 }

@@ -46,4 +46,9 @@ public class PessoaJuridica extends Pessoa {
 
     @Column(name = "peju_inscricao_municipal" , length = 20)
     private String pessoaIM;
+
+    @Override
+    public void setPessoaEmail(String pessoaEmail) {        
+        super.setPessoaEmail(pessoaEmail.toLowerCase());
+    }
      }

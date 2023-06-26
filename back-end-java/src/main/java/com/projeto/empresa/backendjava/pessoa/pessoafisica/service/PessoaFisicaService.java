@@ -18,6 +18,8 @@ public interface PessoaFisicaService {
 
     void validaCpf(String cpf);
 
+    void validaEmail(String email, Long id);
+
     PessoaFisica createPessoaFisica(PessoaFisicaDTO dto);
 
     PessoaFisica updatePessoaFisica(Long id, PessoaFisicaUpdateDTO dto);

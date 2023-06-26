@@ -36,9 +36,10 @@ public class PessoaJuridicaServiceImp implements PessoaJuridicaService {
     public PessoaJuridica createPeju(PessoaJuridicaDTO dto) {
         validaCnpj(dto.getPessoaCnpj());
         PessoaJuridica pessoa = new PessoaJuridica();
-        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaFonecelular","pessoaDtCadastro","pessoaJuridicaId");
+        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaFoneCelular","pessoaFoneFixo","pessoaDtCadastro","pessoaJuridicaId");
         pessoa.setPessoaCnpj(ServiceAPI.apenasNumeros(dto.getPessoaCnpj()));
         pessoa.setPessoaFoneCelular(ServiceAPI.apenasNumeros(dto.getPessoaFoneCelular()));
+        pessoa.setPessoaFoneFixo(ServiceAPI.apenasNumeros(dto.getPessoaFoneFixo()));
         pessoa.setPessoaDtCadastro(LocalDateTime.now());
         return repo.save(pessoa);
     }
@@ -61,7 +62,7 @@ public class PessoaJuridicaServiceImp implements PessoaJuridicaService {
     @Override
     public PessoaJuridica updatePeju(Long id, PessoaJuridicaDTO dto) {
         PessoaJuridica pessoa = getByPejuId(id);
-        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaJuridicaId","pessoaFonecelular","pessoaFoneFixo","pessoaDtCadastro");          
+        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaJuridicaId","pessoaFoneCelular","pessoaFoneFixo","pessoaDtCadastro");          
         pessoa.setPessoaFoneCelular(ServiceAPI.apenasNumeros(dto.getPessoaFoneCelular()));
         pessoa.setPessoaFoneFixo(ServiceAPI.apenasNumeros(dto.getPessoaFoneFixo()));
         pessoa.setPessoaDtAtualizacao(LocalDateTime.now());
