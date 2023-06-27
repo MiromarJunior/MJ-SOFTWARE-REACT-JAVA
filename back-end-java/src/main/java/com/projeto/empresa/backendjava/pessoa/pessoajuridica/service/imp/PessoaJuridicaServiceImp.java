@@ -36,10 +36,16 @@ public class PessoaJuridicaServiceImp implements PessoaJuridicaService {
     public PessoaJuridica createPeju(PessoaJuridicaDTO dto) {
         validaCnpj(dto.getPessoaCnpj());
         PessoaJuridica pessoa = new PessoaJuridica();
-        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaFoneCelular","pessoaFoneFixo","pessoaDtCadastro","pessoaJuridicaId");
+        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaFoneCelular","pessoaFoneFixo",
+        "pessoaDtCadastro","pessoaJuridicaId","pessoaRefBancariaFone2","pessoaRefBancariaFone1","pessoaRefComercialFone2","pessoaRefComercialFone1");
         pessoa.setPessoaCnpj(ServiceAPI.apenasNumeros(dto.getPessoaCnpj()));
         pessoa.setPessoaFoneCelular(ServiceAPI.apenasNumeros(dto.getPessoaFoneCelular()));
         pessoa.setPessoaFoneFixo(ServiceAPI.apenasNumeros(dto.getPessoaFoneFixo()));
+        pessoa.setPessoaRefBancariaFone1(ServiceAPI.apenasNumeros(dto.getPessoaRefBancariaFone1()));
+        pessoa.setPessoaRefBancariaFone2(ServiceAPI.apenasNumeros(dto.getPessoaRefBancariaFone2()));
+
+        pessoa.setPessoaRefComercialFone1(ServiceAPI.apenasNumeros(dto.getPessoaRefComercialFone1()));
+        pessoa.setPessoaRefComercialFone2(ServiceAPI.apenasNumeros(dto.getPessoaRefComercialFone2()));
         pessoa.setPessoaDtCadastro(LocalDateTime.now());
         return repo.save(pessoa);
     }
@@ -62,9 +68,14 @@ public class PessoaJuridicaServiceImp implements PessoaJuridicaService {
     @Override
     public PessoaJuridica updatePeju(Long id, PessoaJuridicaDTO dto) {
         PessoaJuridica pessoa = getByPejuId(id);
-        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaJuridicaId","pessoaFoneCelular","pessoaFoneFixo","pessoaDtCadastro");          
+        BeanUtils.copyProperties(dto, pessoa,"pessoaCnpj","pessoaJuridicaId","pessoaFoneCelular","pessoaFoneFixo","pessoaDtCadastro",
+        "pessoaRefBancariaFone2","pessoaRefBancariaFone1","pessoaRefComercialFone2","pessoaRefComercialFone1");          
         pessoa.setPessoaFoneCelular(ServiceAPI.apenasNumeros(dto.getPessoaFoneCelular()));
         pessoa.setPessoaFoneFixo(ServiceAPI.apenasNumeros(dto.getPessoaFoneFixo()));
+        pessoa.setPessoaRefBancariaFone1(ServiceAPI.apenasNumeros(dto.getPessoaRefBancariaFone1()));
+        pessoa.setPessoaRefBancariaFone2(ServiceAPI.apenasNumeros(dto.getPessoaRefBancariaFone2()));
+        pessoa.setPessoaRefComercialFone1(ServiceAPI.apenasNumeros(dto.getPessoaRefComercialFone1()));
+        pessoa.setPessoaRefComercialFone2(ServiceAPI.apenasNumeros(dto.getPessoaRefComercialFone2()));
         pessoa.setPessoaDtAtualizacao(LocalDateTime.now());
         return repo.save(pessoa);
     }

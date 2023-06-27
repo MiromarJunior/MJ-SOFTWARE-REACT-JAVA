@@ -1,6 +1,5 @@
 package com.projeto.empresa.backendjava.pessoa.pessoajuridica.model;
 
-
 import com.projeto.empresa.backendjava.pessoa.Pessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +22,21 @@ import lombok.NoArgsConstructor;
 @AttributeOverride(name = "pessoaDtAtualizacao", column = @Column(name = "peju_dt_atualizacao", length = 2))
 @AttributeOverride(name = "pessoaComplemento", column = @Column(name = "peju_complemento", length = 200))
 
+@AttributeOverride(name = "pessoaRefBancariaNome1", column = @Column(name = "peju_ref_banc_nome1", length = 100))
+@AttributeOverride(name = "pessoaRefBancariaFone1", column = @Column(name = "peju_ref_banc_fone1", length = 20))
+@AttributeOverride(name = "pessoaRefBancariaEmail1", column = @Column(name = "peju_ref_banc_email1", length = 150))
+
+@AttributeOverride(name = "pessoaRefBancariaNome2", column = @Column(name = "peju_ref_banc_nome2", length = 100))
+@AttributeOverride(name = "pessoaRefBancariaFone2", column = @Column(name = "peju_ref_banc_fone2", length = 20))
+@AttributeOverride(name = "pessoaRefBancariaEmail2", column = @Column(name = "peju_ref_banc_email2", length = 150))
+
+@AttributeOverride(name = "pessoaRefComercialNome1", column = @Column(name = "peju_ref_comerc_nome1", length = 100))
+@AttributeOverride(name = "pessoaRefComercialFone1", column = @Column(name = "peju_ref_comerc_fone1", length = 20))
+@AttributeOverride(name = "pessoaRefComercialEmail1", column = @Column(name = "peju_ref_comerc_email1", length = 150))
+
+@AttributeOverride(name = "pessoaRefComercialNome2", column = @Column(name = "peju_ref_comerc_nome2", length = 100))
+@AttributeOverride(name = "pessoaRefComercialFone2", column = @Column(name = "peju_ref_comerc_fone2", length = 20))
+@AttributeOverride(name = "pessoaRefComercialEmail2", column = @Column(name = "peju_ref_comerc_email2", length = 150))
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,7 +44,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class PessoaJuridica extends Pessoa {
 
-   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pessoaJuridicaId;
@@ -41,14 +54,14 @@ public class PessoaJuridica extends Pessoa {
     @Column(name = "peju_nome_fantasia", length = 150)
     private String pessoaNomeFantasia;
 
-    @Column(name = "peju_inscricao_estadual" , length = 20)
+    @Column(name = "peju_inscricao_estadual", length = 20)
     private String pessoaIE;
 
-    @Column(name = "peju_inscricao_municipal" , length = 20)
+    @Column(name = "peju_inscricao_municipal", length = 20)
     private String pessoaIM;
 
     @Override
-    public void setPessoaEmail(String pessoaEmail) {        
+    public void setPessoaEmail(String pessoaEmail) {
         super.setPessoaEmail(pessoaEmail.toLowerCase());
     }
-     }
+}

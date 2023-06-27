@@ -1,6 +1,8 @@
 package com.projeto.empresa.backendjava.pessoa.pessoafisica.service.imp;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,10 +53,14 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
         validaEmail(dto.getPessoaEmail(), null);
 
         PessoaFisica pessoa = new PessoaFisica();
-        BeanUtils.copyProperties(dto, pessoa, "pessoaCpf", "pessoaFoneCelular", "pessoaFisicaId", "pessoaDtCadastro",
-                "pessoaDtAtualizacao");
+        BeanUtils.copyProperties(dto, pessoa, "pessoaCpf", "pessoaFoneCelular",
+        "pessoaFisicaId", "pessoaDtCadastro", "pessoaDtAtualizacao","pessoaRefBancariaFone2","pessoaRefBancariaFone1" ,"pessoaRefComercialFone2","pessoaRefComercialFone1");
         pessoa.setPessoaCpf(apenasNumeros(dto.getPessoaCpf()));
         pessoa.setPessoaFoneCelular(apenasNumeros(dto.getPessoaFoneCelular()));
+        pessoa.setPessoaRefBancariaFone1(apenasNumeros(dto.getPessoaRefBancariaFone1()));
+        pessoa.setPessoaRefBancariaFone2(apenasNumeros(dto.getPessoaRefBancariaFone2()));
+         pessoa.setPessoaRefComercialFone1(apenasNumeros(dto.getPessoaRefComercialFone1()));
+         pessoa.setPessoaRefComercialFone2(apenasNumeros(dto.getPessoaRefComercialFone2()));
         pessoa.setPessoaDtCadastro(LocalDateTime.now());
         return repository.save(pessoa);
 
@@ -62,7 +68,11 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
 
     @Override
     public List<PessoaFisica> getAllPessoaFisica() {
-        return repository.findAll();
+       
+
+        List<PessoaFisica> pessoas = repository.findAll();
+        Collections.sort(pessoas, Comparator.comparingLong(PessoaFisica::getPessoaFisicaId));
+        return pessoas;
     }
 
     @Override
@@ -81,15 +91,15 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
         modelMapper.map(dto, pessoa);
 
         pessoa.setPessoaFisicaId(id);
-
         pessoa.setPessoaFoneCelular(apenasNumeros(dto.getPessoaFoneCelular()));
-
         pessoa.setPessoaDtAtualizacao(LocalDateTime.now());
-
         pessoa.setPessoaCep(apenasNumeros(dto.getPessoaCep()));
-
         pessoa.setPessoaFoneFixo(apenasNumeros(dto.getPessoaFoneFixo()));
-
+        pessoa.setPessoaRefBancariaFone1(apenasNumeros(dto.getPessoaRefBancariaFone1()));
+        pessoa.setPessoaRefBancariaFone2(apenasNumeros(dto.getPessoaRefBancariaFone2()));
+        pessoa.setPessoaRefComercialFone1(apenasNumeros(dto.getPessoaRefComercialFone1()));
+        pessoa.setPessoaRefComercialFone2(apenasNumeros(dto.getPessoaRefComercialFone2()));
+       
         return repository.save(pessoa);
     }
 

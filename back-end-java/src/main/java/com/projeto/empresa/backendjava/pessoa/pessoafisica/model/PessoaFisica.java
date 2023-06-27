@@ -33,6 +33,23 @@ import lombok.*;
     @AttributeOverride(name = "pessoaDtAtualizacao", column = @Column(name = "pefi_dt_atualizacao",length = 2))
     @AttributeOverride(name = "pessoaComplemento", column = @Column(name = "pefi_complemento", length = 200))
 
+    @AttributeOverride(name = "pessoaRefBancariaNome1", column = @Column(name = "pefi_ref_banc_nome1", length = 100))
+    @AttributeOverride(name = "pessoaRefBancariaFone1", column = @Column(name = "pefi_ref_banc_fone1", length = 20))
+    @AttributeOverride(name = "pessoaRefBancariaEmail1", column = @Column(name = "pefi_ref_banc_email1", length = 150))
+
+    @AttributeOverride(name = "pessoaRefBancariaNome2", column = @Column(name = "pefi_ref_banc_nome2", length = 100))
+    @AttributeOverride(name = "pessoaRefBancariaFone2", column = @Column(name = "pefi_ref_banc_fone2", length = 20))
+    @AttributeOverride(name = "pessoaRefBancariaEmail2", column = @Column(name = "pefi_ref_banc_email2", length = 150))
+
+
+    @AttributeOverride(name = "pessoaRefComercialNome1", column = @Column(name = "pefi_ref_comerc_nome1", length = 100))
+    @AttributeOverride(name = "pessoaRefComercialFone1", column = @Column(name = "pefi_ref_comerc_fone1", length = 20))
+    @AttributeOverride(name = "pessoaRefComercialEmail1", column = @Column(name = "pefi_ref_comerc_email1", length = 150))
+
+    @AttributeOverride(name = "pessoaRefComercialNome2", column = @Column(name = "pefi_ref_comerc_nome2", length = 100))
+    @AttributeOverride(name = "pessoaRefComercialFone2", column = @Column(name = "pefi_ref_comerc_fone2", length = 20))
+    @AttributeOverride(name = "pessoaRefComercialEmail2", column = @Column(name = "pefi_ref_comerc_email2", length = 150))
+
 public class PessoaFisica extends Pessoa{
 
     @Id
@@ -44,6 +61,8 @@ public class PessoaFisica extends Pessoa{
 
     @Column(name = "pefi_dt_nascimento")
     private LocalDate pessoaDtNascimento;
+  
+    private Boolean isFuncionario;
 
     @Override
     public void setPessoaEmail(String pessoaEmail) {       

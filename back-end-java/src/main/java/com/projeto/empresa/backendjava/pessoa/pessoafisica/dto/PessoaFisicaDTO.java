@@ -30,5 +30,7 @@ public class PessoaFisicaDTO extends PessoaDTO {
 
     @Past(message = "Data não pode ser hoje!")
     private LocalDate pessoaDtNascimento;
+
+     private Boolean isFuncionario;
     
 }

@@ -40,6 +40,32 @@ export interface PessoaJuridicaModel {
 
   pessoaComplemento:string;
 
+  pessoaRefBancariaNome1 :string;
+
+  pessoaRefBancariaFone1 :string;
+
+  pessoaRefBancariaEmail1 :string;
+
+  pessoaRefBancariaNome2 :string;
+
+  pessoaRefBancariaFone2 :string;
+
+  pessoaRefBancariaEmail2 :string;
+
+  pessoaRefComercialNome1 :string;
+
+  pessoaRefComercialFone1 :string;
+
+  pessoaRefComercialEmail1 :string;
+
+  pessoaRefComercialNome2 :string;
+
+  pessoaRefComercialFone2 :string;
+
+  pessoaRefComercialEmail2 :string;
+
   alteracao:any;
+
+
 }
 

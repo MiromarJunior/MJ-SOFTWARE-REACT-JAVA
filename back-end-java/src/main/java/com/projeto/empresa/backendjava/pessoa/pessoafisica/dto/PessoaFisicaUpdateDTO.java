@@ -57,8 +57,47 @@ public class PessoaFisicaUpdateDTO {
     @Past(message = "Data não pode ser hoje!")
     private LocalDate pessoaDtNascimento;
 
-        @Size(max = 200, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    @Size(max = 200, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
     private String pessoaComplemento;
+
+    @Size(max = 100, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefBancariaNome1;
+
+    @Size(max = 20, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefBancariaFone1;
+
+    @Size(max = 150, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefBancariaEmail1;
+
+    @Size(max = 100, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefBancariaNome2;
+
+    @Size(max = 20, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefBancariaFone2;
+    
+    @Size(max = 150, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefBancariaEmail2;
+
+
+    @Size(max = 100, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefComercialNome1;
+
+    @Size(max = 20, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefComercialFone1;
+
+    @Size(max = 150, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefComercialEmail1;
+
+    @Size(max = 100, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefComercialNome2;
+
+    @Size(max = 20, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefComercialFone2;
+    
+    @Size(max = 150, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
+    private String pessoaRefComercialEmail2;
+
+     private Boolean isFuncionario;
 
 
     
