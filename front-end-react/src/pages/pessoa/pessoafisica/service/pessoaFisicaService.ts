@@ -1,4 +1,3 @@
-import { PessoaFisicaModel } from "../PessoaFisicaModel";
 
 export const createFormInput = <T>(idForm: string): T => {
     const form = document.querySelector(idForm) as HTMLFormElement;

@@ -30,7 +30,7 @@ export const TableSimple = ({saveRow, columns, rows,tableColumnFormat,rowId }: T
     
 
     const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
+        _event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number,
       ) => {
         setPage(newPage);
@@ -44,7 +44,7 @@ export const TableSimple = ({saveRow, columns, rows,tableColumnFormat,rowId }: T
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         e.preventDefault();
         setPage(0);
-        let search = e.target.value;
+        const search = e.target.value;
         setSearchValue(search);
         const gridRow = search.toString().toLowerCase();
         const filteredRows = rows.filter((item: any) =>
@@ -78,7 +78,7 @@ export const TableSimple = ({saveRow, columns, rows,tableColumnFormat,rowId }: T
                         }} />
 
                 </div>
-                <table className="table table-hover table-sm table-bordered table-container " >
+                <table className="table table-hover table-sm table-bordered table-container "  >
                     <thead  >
                         <tr >
                             {columns.map((l) =>
@@ -91,13 +91,13 @@ export const TableSimple = ({saveRow, columns, rows,tableColumnFormat,rowId }: T
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody >
 
                         {((rowsChange.length === 0 && searchValue === "") ? rows : rowsChange)
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((l: any) =>
 
-                                <tr key={l[rowId]}>
+                                <tr key={l[rowId]} >
                                     {columns.map((k) =>
                                         <td width={k.width} align={k.align}  key={k.id} >
                                             <div style={{marginLeft :"2px"}} > {l[k.value]}</div>

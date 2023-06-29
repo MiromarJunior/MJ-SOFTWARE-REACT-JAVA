@@ -3,11 +3,11 @@ import { mostrarAlerta } from "./utilServices";
 
 
 const baseURL = import.meta.env.VITE_APP_API_URL;
-type SetRowsType = React.Dispatch<React.SetStateAction<object[]>>;
 
-export const getApiBack = async (data:object,uri:string,setRows:SetRowsType) =>{
+
+export const getApiBack = async<T> (data:object,uri:string,setRows: (data: T[]) => void) =>{
     return await axios.get(`${baseURL}${uri}`,{params : data}).then((res)=>{      
-        setRows(res.data);     
+        setRows(res.data as T[]);     
     }).catch((error)=>{
         console.log(error);
         mostrarAlerta(error.response.data.message,true).catch((error) => console.error(error));
@@ -15,7 +15,7 @@ export const getApiBack = async (data:object,uri:string,setRows:SetRowsType) =>{
 }
 
 export const postApiBack =  async(data:object,uri:string) =>{
-    return await axios.post(`${baseURL}${uri}`, data).then((res)=>{      
+    return await axios.post(`${baseURL}${uri}`, data).then(()=>{      
         mostrarAlerta("Registro Cadastrado com Sucesso !",false).catch((error) => console.error(error));
 
        return true;    
@@ -32,7 +32,7 @@ export const postApiBack =  async(data:object,uri:string) =>{
 }
 
 export const putApiBack =  async(id:number,data:object,uri:string) =>{
-    return await axios.put(`${baseURL}${uri}/${id}`, data).then((res)=>{   
+    return await axios.put(`${baseURL}${uri}/${id}`, data).then(()=>{   
         mostrarAlerta("Registro Atualizado com Sucesso !",false).catch((error) => console.error(error));
      
         return true;   
@@ -51,7 +51,7 @@ export const putApiBack =  async(id:number,data:object,uri:string) =>{
 }
 
 export const deleteApiBack =  async(id:number,uri:string) =>{
-    return await axios.delete(`${baseURL}${uri}/${id}`).then((res)=>{    
+    return await axios.delete(`${baseURL}${uri}/${id}`).then(()=>{    
       
         mostrarAlerta("Registro Excluído com Sucesso!",false);
        return true;    
