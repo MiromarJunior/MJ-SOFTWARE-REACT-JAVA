@@ -13,24 +13,25 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class PessoaFisicaDTO extends PessoaDTO {
 
     private Long pessoaFisicaId;
 
-
-
-    @NotBlank(message ="Campo obrigatório")
+    @NotBlank(message = "Campo obrigatório")
     @CPF
     private String pessoaCpf;
 
     @Past(message = "Data não pode ser hoje!")
     private LocalDate pessoaDtNascimento;
 
-     private Boolean isFuncionario;
-    
+    private String pessoaFuncao;
+
+    private Boolean isFuncionario;
+
+    private String pessoaSenha;
+
 }

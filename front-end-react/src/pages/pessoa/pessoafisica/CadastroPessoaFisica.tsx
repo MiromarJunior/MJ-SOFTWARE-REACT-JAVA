@@ -1,6 +1,6 @@
 import { Container, TextField } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import { apenasNr, buscaCepOnline, createFormInput, dataInput, estadosBR, formataCPF, formataCelular, formataFoneFixo, validaCPF, validaCelular, validaFoneFIxo } from "../../../services/utilServices";
+import { apenasNr, buscaCepOnline, createFormInput, dataInput, estadosBR, formataCPF, formataCelular, formataFoneFixo, funcaoUsuario, validaCPF, validaCelular, validaFoneFIxo } from "../../../services/utilServices";
 
 import { postApiBack, putApiBack } from "../../../services/crudService";
 import { PessoaFisicaModel } from "./PessoaFisicaModel";
@@ -200,21 +200,46 @@ export const CadastroPessoaFisica = () => {
 
                     </div>
                     <div className="formContainer">
+
+                        
                    
-                         <div>
+                         <div style={{display: "flex", alignContent:"center"}}>
                               
                          <label htmlFor="isFuncionario" style={{ marginRight: '10px' }}>
                          Funcionário
                          </label>
                          <input 
-                          style={{ transform: 'scale(1.2)', marginRight: '10px' }}
+                          style={{ transform: 'scale(1.2)', marginRight: '10px',cursor: "pointer"}}
                          id="isFuncionario" onChange={handleFuncaoUser} type="checkbox" defaultChecked={lista?.isFuncionario} />
 
-                         </div>  
+                         </div>                          
+
+
+                         <div style={{margin: "0.5rem"}}></div>
+                        
+                         <TextField id="pessoaFuncao" defaultValue={lista?.pessoaFuncao}
+                            select
+                            hidden={!(isFuncionario)}
+                            SelectProps={{ native: true }}
+                            label="Função"
+                            variant="outlined" InputLabelProps={{ shrink: true }}
+                            sx={{  minWidth: "5rem",marginLeft:"0.5rem" }}>
+                             <option value={""}></option>
+                            {funcaoUsuario.map((l) =>
+                                <option key={l} value={l}>{l}</option>
+                            )}
+
+                        </TextField>
+
+                     
 
                        
 
                     </div>
+
+
+
+                    
                     <div >
                         <hr />
                         <h6 style={{ color: "GrayText" }} className="subTitulo" >REFERÊNCIAS BANCÁRIAS</h6>

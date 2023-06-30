@@ -6,6 +6,7 @@ import { HomeInit } from "./pages/home/HomeInit"
 import { PessoaFisica } from "./pages/pessoa/pessoafisica/PessoaFisica"
 import { PessoaJuridica } from "./pages/pessoa/pessoajuridica/PessoaJuridica"
 import { CadastroPessoaJuridica } from "./pages/pessoa/pessoajuridica/CadastroPessoaJuridica"
+import { LoginUsuario } from "./pages/login/LoginUsuario"
 
 
 
@@ -16,6 +17,7 @@ export const AppRotas = ()=>{
          <Menu>
         <Routes>
         <Route path="/*" element={<HomeInit/>}  /> 
+        <Route path="/" element={<LoginUsuario/>}  /> 
             <Route path="/pessoaFisica" element={<PessoaFisica/>}  />         
             <Route path="/cadastroPessoaFisica" element={<CadastroPessoaFisica/>}  />         
             <Route path="/pessoaJuridica" element={<PessoaJuridica/>}  />         

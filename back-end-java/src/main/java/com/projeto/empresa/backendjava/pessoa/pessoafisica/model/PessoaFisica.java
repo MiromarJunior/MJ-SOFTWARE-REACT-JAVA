@@ -61,6 +61,12 @@ public class PessoaFisica extends Pessoa{
 
     @Column(name = "pefi_dt_nascimento")
     private LocalDate pessoaDtNascimento;
+
+    @Column(name = "pefi_funcao", length = 100)
+    private String pessoaFuncao;
+
+    @Column(name = "pefi_senha", length = 20)
+    private String pessoaSenha;
   
     private Boolean isFuncionario;
 

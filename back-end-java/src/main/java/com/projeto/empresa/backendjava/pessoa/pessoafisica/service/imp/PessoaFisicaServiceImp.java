@@ -23,6 +23,8 @@ import com.projeto.empresa.backendjava.pessoa.pessoafisica.model.PessoaFisica;
 import com.projeto.empresa.backendjava.pessoa.pessoafisica.repository.PessoaFisicaRepository;
 import com.projeto.empresa.backendjava.pessoa.pessoafisica.service.PessoaFisicaService;
 
+
+
 @Service
 public class PessoaFisicaServiceImp implements PessoaFisicaService {
 
@@ -136,5 +138,15 @@ public class PessoaFisicaServiceImp implements PessoaFisicaService {
         resposta.put("mensagem", "Registro Excluído com Sucesso!");
         return resposta;
     }
+
+    //     public static String hashPassword(String password) {
+    //     // Defina o fator de custo (cost factor) desejado (recomendado mínimo: 10)
+    //     int costFactor = 10;
+        
+    //     // Gere um hash da senha usando o bcrypt
+    //     //  String hashedPassword = BCrypt.hashpw(password, 10);
+        
+    //     // return hashedPassword;
+    // }
 
 }

@@ -78,6 +78,12 @@ public class PessoaFisicaController {
     
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUsuario(){
+        String msg = "Logado com Sucesso!";
+        return ResponseEntity.ok().body(msg);
+    }
+
 
     
 

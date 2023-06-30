@@ -97,7 +97,9 @@ public class PessoaFisicaUpdateDTO {
     @Size(max = 150, message = "'${validatedValue}' Tamanho máximo {max} caracteres.")
     private String pessoaRefComercialEmail2;
 
-     private Boolean isFuncionario;
+    private Boolean isFuncionario;
+
+    private String pessoaFuncao;
 
 
     
