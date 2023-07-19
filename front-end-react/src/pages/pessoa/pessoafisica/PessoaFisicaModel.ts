@@ -64,6 +64,8 @@ export interface PessoaFisicaModel {
   isFuncionario:boolean;
 
   pessoaFuncao:string;
+  
+  pessoaSenha:string;
 
   alteracao:any;
 }

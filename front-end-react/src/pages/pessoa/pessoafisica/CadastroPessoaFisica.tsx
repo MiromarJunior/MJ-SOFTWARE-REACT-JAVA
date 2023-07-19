@@ -199,43 +199,55 @@ export const CadastroPessoaFisica = () => {
                         </div>
 
                     </div>
-                    <div className="formContainer">
+                   
 
                         
                    
-                         <div style={{display: "flex", alignContent:"center"}}>
-                              
-                         <label htmlFor="isFuncionario" style={{ marginRight: '10px' }}>
+                        
+                    <div  >
+                         <label  htmlFor="isFuncionario" style={{ marginRight: '10px',marginTop:"20px" }}>
                          Funcionário
                          </label>
                          <input 
                           style={{ transform: 'scale(1.2)', marginRight: '10px',cursor: "pointer"}}
                          id="isFuncionario" onChange={handleFuncaoUser} type="checkbox" defaultChecked={lista?.isFuncionario} />
 
-                         </div>                          
-
-
-                         <div style={{margin: "0.5rem"}}></div>
-                        
-                         <TextField id="pessoaFuncao" defaultValue={lista?.pessoaFuncao}
+<TextField id="pessoaFuncao" defaultValue={lista?.pessoaFuncao}
                             select
                             hidden={!(isFuncionario)}
                             SelectProps={{ native: true }}
                             label="Função"
                             variant="outlined" InputLabelProps={{ shrink: true }}
-                            sx={{  minWidth: "5rem",marginLeft:"0.5rem" }}>
+                            sx={{  minWidth: "5rem",marginLeft:"1.5rem" }}>
                              <option value={""}></option>
                             {funcaoUsuario.map((l) =>
                                 <option key={l} value={l}>{l}</option>
                             )}
 
                         </TextField>
+                         
+                         <TextField id="pessoaSenha" defaultValue={lista?.pessoaSenha}
+                            type="password"
+                            label="Senha"
+                            variant="outlined" InputLabelProps={{ shrink: true }}
+                            inputProps={{ maxLength: 100 }}
+                            sx={{ marginLeft:"0.5rem"  }}
+                            hidden={!(isFuncionario)}
 
-                     
+                        />
+
 
                        
+                        
+                        
 
-                    </div>
+                     
+                        </div>
+                       
+
+                   
+
+                    
 
 
 
@@ -360,13 +372,12 @@ export const CadastroPessoaFisica = () => {
 
 
 
-                    <div>
+                   
                         <button className="btn btn-outline-primary btn-sm" style={{ margin: "0.5rem" }} type="submit" form="formUsuario"  >SALVAR</button>
 
                         <button className="btn btn-outline-danger btn-sm" type="button" onClick={returnPage} >VOLTAR</button>
 
-
-                    </div>
+                      
 
                 </form>
 

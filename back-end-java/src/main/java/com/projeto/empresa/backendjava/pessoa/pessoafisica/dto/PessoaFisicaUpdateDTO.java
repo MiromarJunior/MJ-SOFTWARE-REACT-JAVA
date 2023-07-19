@@ -101,6 +101,8 @@ public class PessoaFisicaUpdateDTO {
 
     private String pessoaFuncao;
 
+    private String pessoaSenha;
+
 
     
 }

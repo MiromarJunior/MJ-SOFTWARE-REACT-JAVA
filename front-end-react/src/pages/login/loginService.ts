@@ -8,7 +8,7 @@ const baseURL = import.meta.env.VITE_APP_API_URL;
 export const postApiBackLogin =  async(data:object,uri:string) =>{
     return await axios.post(`${baseURL}${uri}`, data).then((res)=>{
         console.log(res.data);      
-        mostrarAlerta("Registro Cadastrado com Sucesso !",false).catch((error) => console.error(error));
+       // mostrarAlerta("Login Efetuado com Sucesso !",false).catch((error) => console.error(error));
 
        return true;    
     }).catch((error)=>{
